@@ -1,5 +1,21 @@
 <div class="container">
     <%- partial('partials/social', {}) %>
+    <% var email = theme.social && theme.social.email; %>
+    <% var github = theme.social && theme.social.github; %>
+    <% if (email || github) { %>
+        <div class="footer-contact">
+            <span>联系方式：</span>
+            <% if (email) { %>
+                <a href="mailto:<%= email %>"><%= email %></a>
+            <% } %>
+            <% if (email && github) { %>
+                <span class="footer-contact-separator">/</span>
+            <% } %>
+            <% if (github) { %>
+                <a href="<%= github %>" target="_blank" rel="noopener"><%= github.replace(/^https?:\/\//, '') %></a>
+            <% } %>
+        </div>
+    <% } %>
     <div class="copyright">
         <span>
             <% var author = "iLiKE Theme"; if (config.author) { author = config.author %>
