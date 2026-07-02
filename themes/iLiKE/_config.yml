@@ -5,7 +5,6 @@ language: zh-CN
 # main menu navigation
 menu:
   Home: /
-  Archives: /archives
   联系我: mailto:2228598786@qq.com
   Codes: https://github.com/Benjmmi/Benjmmi.github.io/tree/main/assets/codes
 
