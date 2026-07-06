@@ -15,7 +15,7 @@
           <% years[year].map(function(post){  %>
             <li >
               <time><%= date(post.date) %></time>
-              <a href="<%- config.root %><%- post.path %>">
+              <a href="<%- post.html_url || (config.root + post.path) %>">
                 <%- post.title ? post.title : __('untitled') %>
               </a>
             </li>
