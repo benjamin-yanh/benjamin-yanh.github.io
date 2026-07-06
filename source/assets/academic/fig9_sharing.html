@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM 提示词范式学术图表复原</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .academic-grid {
+            background-color: #f8fafc;
+            background-image: radial-gradient(#e2e8f0 1.2px, transparent 1.2px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col overflow-x-hidden select-none">
+    <main class="flex-grow flex flex-col xl:flex-row items-center justify-center p-6 gap-6 relative overflow-auto academic-grid">
+
+        <!-- Vector Canvas Card (The reconstructed diagram) -->
+        <div class="flex flex-col items-center gap-2 max-w-full">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-widest bg-white/80 dark:bg-slate-800/80 px-2 py-1 rounded shadow-sm">矢量高保真复原版</span>
+            <div class="bg-white p-12 rounded-xl shadow-2xl border border-slate-200/50 overflow-auto max-w-full">
+                <svg id="diagram-svg" width="1440" height="580" viewBox="0 0 1440 580" fill="none" xmlns="http://www.w3.org/2000/svg" class="block">
+                    <!-- Global Styles for beautiful, crisp rendering -->
+                    <style>
+                        .node-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 12px; font-weight: 500; fill: #000000; }
+                        .caption-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #000000; }
+                        .label-text { font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 500; fill: #000000; }
+                        .line { stroke: #000000; stroke-width: 1.2px; }
+                        .blue-node { fill: #dbeafe; stroke: #000000; stroke-width: 1px; rx: 4px; }
+                        .green-node { fill: #e2f0d9; stroke: #000000; stroke-width: 1px; rx: 4px; }
+                        .yellow-node { fill: #fbe5d6; stroke: #000000; stroke-width: 1px; rx: 4px; }
+                    </style>
+
+                    <!-- Background for SVG exporting to ensure white canvas -->
+                    <rect width="1440" height="580" fill="#FFFFFF"/>
+
+                    <!-- ========================================== -->
+                    <!-- (a) FEW-SHOT LEARNING SECTION -->
+                    <!-- ========================================== -->
+                    <g id="few-shot-learning">
+                        <!-- Row 1 -->
+                        <text x="110" y="60" class="label-text" text-anchor="end" dominant-baseline="central">Prompt 1</text>
+                        <line x1="120" y1="60" x2="150" y2="60" class="line" />
+                        <rect x="150" y="48" width="115" height="24" class="blue-node" />
+                        <text x="207.5" y="60" class="node-text" text-anchor="middle" dominant-baseline="central">Few-shot examples</text>
+
+                        <line x1="265" y1="60" x2="285" y2="60" class="line" />
+                        <rect x="285" y="48" width="85" height="24" class="green-node" />
+                        <text x="327.5" y="60" class="node-text" text-anchor="middle" dominant-baseline="central">Question 1</text>
+
+                        <line x1="370" y1="60" x2="400" y2="60" class="line" />
+                        <rect x="400" y="48" width="80" height="24" class="yellow-node" />
+                        <text x="440" y="60" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 1</text>
+
+                        <!-- Row 2 -->
+                        <text x="110" y="95" class="label-text" text-anchor="end" dominant-baseline="central">Prompt 2</text>
+                        <line x1="120" y1="95" x2="150" y2="95" class="line" />
+                        <rect x="150" y="83" width="115" height="24" class="blue-node" />
+                        <text x="207.5" y="95" class="node-text" text-anchor="middle" dominant-baseline="central">Few-shot examples</text>
+
+                        <line x1="265" y1="95" x2="285" y2="95" class="line" />
+                        <rect x="285" y="83" width="85" height="24" class="green-node" />
+                        <text x="327.5" y="95" class="node-text" text-anchor="middle" dominant-baseline="central">Question 2</text>
+
+                        <line x1="370" y1="95" x2="400" y2="95" class="line" />
+                        <rect x="400" y="83" width="80" height="24" class="yellow-node" />
+                        <text x="440" y="95" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 2</text>
+
+                        <!-- Row 3 -->
+                        <text x="110" y="130" class="label-text" text-anchor="end" dominant-baseline="central">Prompt 3</text>
+                        <line x1="120" y1="130" x2="150" y2="130" class="line" />
+                        <rect x="150" y="118" width="115" height="24" class="blue-node" />
+                        <text x="207.5" y="130" class="node-text" text-anchor="middle" dominant-baseline="central">Few-shot examples</text>
+
+                        <line x1="265" y1="130" x2="285" y2="130" class="line" />
+                        <rect x="285" y="118" width="85" height="24" class="green-node" />
+                        <text x="327.5" y="130" class="node-text" text-anchor="middle" dominant-baseline="central">Question 3</text>
+
+                        <line x1="370" y1="130" x2="400" y2="130" class="line" />
+                        <rect x="400" y="118" width="80" height="24" class="yellow-node" />
+                        <text x="440" y="130" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 3</text>
+
+                        <!-- Section Caption -->
+                        <text x="295" y="175" class="caption-text" text-anchor="middle" dominant-baseline="central">(a) Few-shot learning</text>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- (b) SELF-CONSISTENCY SECTION -->
+                    <!-- ========================================== -->
+                    <g id="self-consistency">
+                        <!-- Left Connection and Question Block -->
+                        <text x="110" y="265" class="label-text" text-anchor="end" dominant-baseline="central">Prompt</text>
+                        <line x1="120" y1="265" x2="150" y2="265" class="line" />
+                        <rect x="150" y="253" width="110" height="24" class="blue-node" />
+                        <text x="205" y="265" class="node-text" text-anchor="middle" dominant-baseline="central">Question</text>
+
+                        <!-- Fan Connections -->
+                        <line x1="260" y1="265" x2="360" y2="215" class="line" />
+                        <line x1="260" y1="265" x2="360" y2="265" class="line" />
+                        <line x1="260" y1="265" x2="360" y2="315" class="line" />
+
+                        <!-- Generation Outputs -->
+                        <!-- Row 1 -->
+                        <rect x="360" y="203" width="65" height="24" class="yellow-node" />
+                        <text x="392.5" y="215" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 1</text>
+                        <text x="435" y="215" class="label-text" text-anchor="start" dominant-baseline="central">Generation 1</text>
+
+                        <!-- Row 2 -->
+                        <rect x="360" y="253" width="65" height="24" class="yellow-node" />
+                        <text x="392.5" y="265" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 2</text>
+                        <text x="435" y="265" class="label-text" text-anchor="start" dominant-baseline="central">Generation 2</text>
+
+                        <!-- Row 3 -->
+                        <rect x="360" y="303" width="65" height="24" class="yellow-node" />
+                        <text x="392.5" y="315" class="node-text" text-anchor="middle" dominant-baseline="central">Answer 3</text>
+                        <text x="435" y="315" class="label-text" text-anchor="start" dominant-baseline="central">Generation 3</text>
+
+                        <!-- Section Caption -->
+                        <text x="295" y="360" class="caption-text" text-anchor="middle" dominant-baseline="central">(b) Self-consistency</text>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- (c) MULTI-TURN CHAT SECTION -->
+                    <!-- ========================================== -->
+                    <g id="multi-turn-chat">
+                        <!-- Row 1 -->
+                        <rect x="50" y="393" width="65" height="24" class="green-node" />
+                        <text x="82.5" y="405" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 1 (Q)</text>
+                        <rect x="120" y="393" width="65" height="24" class="yellow-node" />
+                        <text x="152.5" y="405" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 1 (A)</text>
+
+                        <!-- Row 2 -->
+                        <rect x="50" y="428" width="110" height="24" class="blue-node" />
+                        <text x="105" y="440" class="node-text" text-anchor="middle" dominant-baseline="central">Chat History</text>
+                        <rect x="165" y="428" width="65" height="24" class="green-node" />
+                        <text x="197.5" y="440" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 2 (Q)</text>
+                        <rect x="235" y="428" width="65" height="24" class="yellow-node" />
+                        <text x="267.5" y="440" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 2 (A)</text>
+
+                        <!-- Row 3 -->
+                        <rect x="50" y="463" width="225" height="24" class="blue-node" />
+                        <text x="162.5" y="475" class="node-text" text-anchor="middle" dominant-baseline="central">Chat History</text>
+                        <rect x="280" y="463" width="65" height="24" class="green-node" />
+                        <text x="312.5" y="475" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 3 (Q)</text>
+                        <rect x="350" y="463" width="65" height="24" class="yellow-node" />
+                        <text x="382.5" y="475" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 3 (A)</text>
+
+                        <!-- Row 4 -->
+                        <rect x="50" y="498" width="340" height="24" class="blue-node" />
+                        <text x="220" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Chat History</text>
+                        <rect x="395" y="498" width="65" height="24" class="green-node" />
+                        <text x="427.5" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 4 (Q)</text>
+                        <rect x="465" y="498" width="65" height="24" class="yellow-node" />
+                        <text x="497.5" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Turn 4 (A)</text>
+
+                        <!-- Section Caption -->
+                        <text x="295" y="545" class="caption-text" text-anchor="middle" dominant-baseline="central">(c) Multi-turn chat</text>
+                    </g>
+
+                    <!-- ========================================== -->
+                    <!-- (d) TREE-OF-THOUGHT SECTION -->
+                    <!-- ========================================== -->
+                    <g id="tree-of-thought">
+                        <!-- Central Left Root Question Node -->
+                        <rect x="700" y="273" width="65" height="24" class="blue-node" />
+                        <text x="732.5" y="285" class="node-text" text-anchor="middle" dominant-baseline="central">Question</text>
+
+                        <!-- Vertical Connector Fan Lines -->
+                        <line x1="765" y1="285" x2="810" y2="60" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="110" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="160" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="210" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="260" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="310" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="360" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="410" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="460" class="line" />
+                        <line x1="765" y1="285" x2="810" y2="510" class="line" />
+
+                        <!-- Rows 1 to 10 stacked layout -->
+                        <!-- Row 1 -->
+                        <rect x="810" y="48" width="70" height="24" class="green-node" />
+                        <text x="845" y="60" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1</text>
+                        <rect x="890" y="48" width="70" height="24" class="yellow-node" />
+                        <text x="925" y="60" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1</text>
+
+                        <!-- Row 2 -->
+                        <rect x="810" y="98" width="150" height="24" class="blue-node" />
+                        <text x="885" y="110" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="970" y="98" width="80" height="24" class="green-node" />
+                        <text x="1010" y="110" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.1</text>
+                        <rect x="1060" y="98" width="80" height="24" class="yellow-node" />
+                        <text x="1100" y="110" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.1</text>
+
+                        <!-- Row 3 -->
+                        <rect x="810" y="148" width="310" height="24" class="blue-node" />
+                        <text x="965" y="160" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="1130" y="148" width="90" height="24" class="green-node" />
+                        <text x="1175" y="160" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.1.1</text>
+                        <rect x="1230" y="148" width="90" height="24" class="yellow-node" />
+                        <text x="1275" y="160" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.1.1</text>
+
+                        <!-- Row 4 -->
+                        <rect x="810" y="198" width="150" height="24" class="blue-node" />
+                        <text x="885" y="210" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="970" y="198" width="80" height="24" class="green-node" />
+                        <text x="1010" y="210" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.2</text>
+                        <rect x="1060" y="198" width="80" height="24" class="yellow-node" />
+                        <text x="1100" y="210" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.2</text>
+
+                        <!-- Row 5 -->
+                        <rect x="810" y="248" width="310" height="24" class="blue-node" />
+                        <text x="965" y="260" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="1130" y="248" width="90" height="24" class="green-node" />
+                        <text x="1175" y="260" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.2.1</text>
+                        <rect x="1230" y="248" width="90" height="24" class="yellow-node" />
+                        <text x="1275" y="260" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 1.2.1</text>
+
+                        <!-- Row 6 -->
+                        <rect x="810" y="298" width="70" height="24" class="green-node" />
+                        <text x="845" y="310" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2</text>
+                        <rect x="890" y="298" width="70" height="24" class="yellow-node" />
+                        <text x="925" y="310" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2</text>
+
+                        <!-- Row 7 -->
+                        <rect x="810" y="348" width="150" height="24" class="blue-node" />
+                        <text x="885" y="360" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="970" y="348" width="80" height="24" class="green-node" />
+                        <text x="1010" y="360" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.1</text>
+                        <rect x="1060" y="348" width="80" height="24" class="yellow-node" />
+                        <text x="1100" y="360" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.1</text>
+
+                        <!-- Row 8 -->
+                        <rect x="810" y="398" width="310" height="24" class="blue-node" />
+                        <text x="965" y="410" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="1130" y="398" width="90" height="24" class="green-node" />
+                        <text x="1175" y="410" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.1.1</text>
+                        <rect x="1230" y="398" width="90" height="24" class="yellow-node" />
+                        <text x="1275" y="410" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.1.1</text>
+
+                        <!-- Row 9 -->
+                        <rect x="810" y="448" width="150" height="24" class="blue-node" />
+                        <text x="885" y="460" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="970" y="448" width="80" height="24" class="green-node" />
+                        <text x="1010" y="460" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.2</text>
+                        <rect x="1060" y="448" width="80" height="24" class="yellow-node" />
+                        <text x="1100" y="460" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.2</text>
+
+                        <!-- Row 10 -->
+                        <rect x="810" y="498" width="310" height="24" class="blue-node" />
+                        <text x="965" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Search History</text>
+                        <rect x="1130" y="498" width="90" height="24" class="green-node" />
+                        <text x="1175" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.2.1</text>
+                        <rect x="1230" y="498" width="90" height="24" class="yellow-node" />
+                        <text x="1275" y="510" class="node-text" text-anchor="middle" dominant-baseline="central">Branch 2.2.1</text>
+
+                        <!-- Section Caption -->
+                        <text x="1065" y="545" class="caption-text" text-anchor="middle" dominant-baseline="central">(d) Tree-of-thought</text>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Optional Reference View Side-by-Side (Controlled by button) -->
+        <div id="reference-panel" class="hidden flex flex-col items-center gap-2 max-w-full animate-fadeIn transition-all duration-300">
+            <span class="text-xs font-semibold text-amber-500 uppercase tracking-widest bg-amber-50 px-2 py-1 rounded shadow-sm border border-amber-200">原始图像 image_615f17.png 参考</span>
+            <div class="bg-white p-4 rounded-xl shadow-2xl border border-slate-200 overflow-auto max-w-[650px]">
+                <img src="image_615f17.png" alt="Original diagram reference" class="max-w-full h-auto rounded opacity-95" />
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Toggle side-by-side comparison panel
+        const btnCompare = document.getElementById('btn-compare');
+        const referencePanel = document.getElementById('reference-panel');
+
+        btnCompare.addEventListener('click', () => {
+            referencePanel.classList.toggle('hidden');
+            if (referencePanel.classList.contains('hidden')) {
+                btnCompare.innerHTML = '<span>🔍 对照原图</span>';
+                btnCompare.classList.replace('bg-amber-100', 'bg-slate-800');
+                btnCompare.classList.replace('text-amber-800', 'text-slate-300');
+            } else {
+                btnCompare.innerHTML = '<span>⚡ 关闭对照</span>';
+                btnCompare.classList.replace('bg-slate-800', 'bg-amber-100');
+                btnCompare.classList.replace('text-slate-300', 'text-amber-800');
+            }
+        });
+
+        // Download raw vector SVG
+        document.getElementById('btn-svg').addEventListener('click', () => {
+            const svgEl = document.getElementById('diagram-svg');
+            const svgString = new XMLSerializer().serializeToString(svgEl);
+            const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'LLM_Prompting_Paradigms_Restoration.svg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        });
+
+        // Render clean, ultra-crisp PNG for thesis/presentations (at 3x density)
+        document.getElementById('btn-png').addEventListener('click', () => {
+            const svgEl = document.getElementById('diagram-svg');
+            const svgString = new XMLSerializer().serializeToString(svgEl);
+            const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+
+            const image = new Image();
+            image.onload = () => {
+                const canvas = document.createElement('canvas');
+                const scale = 3; // 3x multiplier to ensure academic publication-quality fonts
+                canvas.width = 1440 * scale;
+                canvas.height = 580 * scale;
+
+                const context = canvas.getContext('2d');
+                context.fillStyle = '#FFFFFF';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.scale(scale, scale);
+                context.drawImage(image, 0, 0);
+
+                const pngUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = pngUrl;
+                link.download = 'LLM_Prompting_Paradigms_Restoration.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            };
+            image.src = url;
+        });
+    </script>
+</body>
+</html>
