@@ -7,9 +7,5 @@ func Test_L1(t *testing.T) {
 }
 
 func twoSum(nums []int, target int) []int {
-	var answer [2]int
-	maps := make(map[int]int)
-	for i, num := range nums {
-		maps[num] = i
-	}
+
 }
