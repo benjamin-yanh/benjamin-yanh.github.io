@@ -6,24 +6,23 @@ import (
 )
 
 func trap(height []int) int {
-	left, right, n := 0, 1, len(height)
-	total := 0
+	left, right, leftMax, rightMax := 0, len(height)-1, 0, 0
 	sum := 0
-	{
-		for right < n {
-			if height[right] > height[left] {
-				total += sum
-				sum = 0
-				left = right
-				right++
-				continue
-			}
-			sum += height[left] - height[right]
-			right++
+
+	for left < right {
+		leftMax = max(height[left], leftMax)
+		rightMax = max(height[right], rightMax)
+
+		if height[left] < height[right] {
+			sum += leftMax - height[left]
+			left++
+		} else {
+			sum += rightMax - height[right]
+			right--
 		}
 	}
 
-	return total
+	return sum
 }
 
 func Test_trap(t *testing.T) {
