@@ -1,22 +1,49 @@
 <div class="article">
   <% var years = {};
       site.posts.sort('date').reverse().forEach(function(post){
-          var year = post.date.year()
+          var year = post.date.year();
           if(years[year]===undefined){
               years[year] = [];
           }
-          years[year].push(post);
+          years[year].push({
+              sort: post.date.valueOf(),
+              time: date(post.date),
+              title: post.title ? post.title : __('untitled'),
+              url: post.html_url || (config.root + post.path)
+          });
+      });
+
+      // 学术文档（/assets/academic 下的静态文件，非 Hexo 文章）
+      var academicDocs = [
+          { date: '2026-07-06', title: 'SGLang 学习笔记（HTML）', url: '/assets/academic/SGLang_学习笔记.html' },
+          { date: '2026-07-06', title: 'SGLang 图解动画', url: '/assets/academic/SGLang_图解动画.html' },
+          { date: '2026-07-06', title: 'SGLang 学习博客 阶段一', url: '/assets/academic/SGLang_学习博客_阶段一.html' },
+          { date: '2026-07-06', title: 'SGLang 中文阅读器', url: '/assets/academic/sglang_zh_reader.html' },
+          { date: '2026-07-06', title: '论文 PDF：2312.07104v2', url: '/assets/academic/2312.07104v2.pdf' }
+      ];
+      academicDocs.forEach(function(doc){
+          var d = new Date(doc.date);
+          var year = d.getFullYear();
+          if(years[year]===undefined){
+              years[year] = [];
+          }
+          years[year].push({
+              sort: d.valueOf(),
+              time: date(doc.date),
+              title: doc.title,
+              url: doc.url
+          });
       });
     %>
     <% Object.keys(years).reverse().forEach(function(year){  %>
       <div class="year-list">
         <h3><%= year %></h3>
         <ul>
-          <% years[year].map(function(post){  %>
+          <% years[year].sort(function(a, b){ return b.sort - a.sort; }).forEach(function(item){  %>
             <li >
-              <time><%= date(post.date) %></time>
-              <a href="<%- post.html_url || (config.root + post.path) %>">
-                <%- post.title ? post.title : __('untitled') %>
+              <time><%= item.time %></time>
+              <a href="<%- item.url %>">
+                <%- item.title %>
               </a>
             </li>
           <% }) %>
