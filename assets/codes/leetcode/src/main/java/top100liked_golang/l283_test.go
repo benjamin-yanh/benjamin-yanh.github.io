@@ -1,6 +1,9 @@
 package top100liked_golang
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func moveZeroes2(nums []int) {
 
@@ -31,5 +34,6 @@ func moveZeroes(nums []int) {
 
 func Test_moveZeroes(t *testing.T) {
 	moveZeroes([]int{2, 1, 0, 3, 12})
+	fmt.Println("Heloo")
 	//moveZeroes([]int{0, 1, 0, 3, 12})
 }

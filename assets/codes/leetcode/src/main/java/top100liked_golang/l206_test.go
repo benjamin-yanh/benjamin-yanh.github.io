@@ -2,11 +2,6 @@ package top100liked_golang
 
 import "testing"
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func reverseList(head *ListNode) *ListNode {
 	var pre, cur *ListNode = nil, head
 	for cur != nil {
