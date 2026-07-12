@@ -5,11 +5,6 @@ import (
 	"testing"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	dummy := &ListNode{Val: -1, Next: head}
 

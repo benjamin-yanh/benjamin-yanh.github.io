@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGLang Code Snippet Replica</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        /* 精准匹配原图的 VS Code / GitHub Light 风格语法高亮 */
+        .token.keyword { color: #d73a49; font-weight: 500; } /* def, if, return, for, in */
+        .token.decorator { color: #d73a49; } /* @function */
+        .token.builtin { color: #d73a49; } /* system, user, assistant, gen, select, fork, zip, print */
+        .token.string { color: #032f62; } /* "Clarity", "Originality", etc. */
+        .token.comment { color: #6a737d; font-style: italic; } /* # Comments */
+        .token.default { color: #24292e; } /* variables, operator, text */
+        /* 右侧注释文本样式 */
+        .annotation-text {
+            position: absolute;
+            /* 统一靠右 80% 对齐 (您可以在这里修改对齐比例，例如 left: 78% 等) */
+            left: 80%;
+            font-size: 13px;
+            line-height: 1.35;
+            color: #24292e;
+            pointer-events: auto;
+            transform: translateY(-50%); /* 垂直居中对齐代码行 */
+        }
+        /* 原图里的蓝色链接样式 */
+        .sec-link {
+            color: #005cc5;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen py-12">
+    <!-- 主容器：对应图片 image_6088a2.jpg 的高保真卡片 -->
+    <div id="workspace" class="relative w-full max-w-[1200px] bg-white p-10 select-none">
+
+        <!-- 代码展示区域 -->
+        <div id="code-container" class="relative min-h-[720px]">
+
+            <pre class="code-font text-slate-800 m-0 p-0"><code class="block">
+<div><span class="token default">dimensions = [</span><span class="token string">"Clarity"</span><span class="token default">, </span><span class="token string">"Originality"</span><span class="token default">, </span><span class="token string">"Evidence"</span><span class="token default">]</span></div>
+<div></div>
+<div><span class="token decorator">@function</span></div>
+<div><span class="token keyword">def</span> <span class="token default">multi_dimensional_judge(s, path, essay):</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">system</span><span class="token default">(</span><span class="token string">"Evaluate an essay about an image."</span><span class="token default">)</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">user</span><span class="token default">(</span><span class="token builtin">image</span><span class="token default">(path) + </span><span class="token string">"Essay:"</span><span class="token default"> + essay) <span id="target-1"></span></span></div>
+<div><span class="token default">    s += </span><span class="token builtin">assistant</span><span class="token default">(</span><span class="token string">"Sure!"</span><span class="token default">)</span></div>
+<div></div>
+<div><span class="token comment">    # Return directly if it is not related</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">user</span><span class="token default">(</span><span class="token string">"Is the essay related to the image?"</span><span class="token default">)</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">assistant</span><span class="token default">(</span><span class="token builtin">select</span><span class="token default">(</span><span class="token string">"related"</span><span class="token default">, choices=[</span><span class="token string">"yes"</span><span class="token default">, </span><span class="token string">"no"</span><span class="token default">])) <span id="target-2"></span></span></div>
+<div><span class="token default">    </span><span class="token keyword">if</span> <span class="token default">s[</span><span class="token string">"related"</span><span class="token default">] == </span><span class="token string">"no"</span><span class="token default">: </span><span class="token keyword">return</span><span class="token default"> <span id="target-3"></span></span></div>
+<div></div>
+<div><span class="token comment">    # Judge multiple dimensions in parallel</span></div>
+<div><span class="token default">    forks = s.</span><span class="token builtin">fork</span><span class="token default">(len(dimensions)) <span id="target-4"></span></span></div>
+<div><span class="token default">    </span><span class="token keyword">for</span> <span class="token default">f, dim </span><span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token default">(forks, dimensions):</span></div>
+<div><span class="token default">        f += </span><span class="token builtin">user</span><span class="token default">(</span><span class="token string">"Evaluate based on the following dimension:"</span><span class="token default"> +</span></div>
+<div><span class="token default">                 dim + </span><span class="token string">". End your judgment with the word 'END'"</span><span class="token default">)</span></div>
+<div><span class="token default">        f += </span><span class="token builtin">assistant</span><span class="token default">(</span><span class="token string">"Judgment:"</span><span class="token default"> + </span><span class="token builtin">gen</span><span class="token default">(</span><span class="token string">"judgment"</span><span class="token default">, stop=</span><span class="token string">"END"</span><span class="token default">)) <span id="target-5"></span></span></div>
+<div></div>
+<div><span class="token comment">    # Merge the judgments</span></div>
+<div><span class="token default">    judgment = </span><span class="token string">"\n"</span><span class="token default">.join(f[</span><span class="token string">"judgment"</span><span class="token default">] </span><span class="token keyword">for</span> <span class="token default">f </span><span class="token keyword">in</span> <span class="token default">forks) <span id="target-6"></span></span></div>
+<div></div>
+<div><span class="token comment">    # Generate a summary and a grade. Return in the JSON format.</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">user</span><span class="token default">(</span><span class="token string">"Provide the judgment, summary, and a letter grade"</span><span class="token default">)</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">assistant</span><span class="token default">(judgment + </span><span class="token string">"In summary,"</span><span class="token default"> + </span><span class="token builtin">gen</span><span class="token default">(</span><span class="token string">"summary"</span><span class="token default">, stop=</span><span class="token string">"."</span><span class="token default">)</span></div>
+<div><span class="token default">                   + </span><span class="token string">"The grade of it is"</span><span class="token default"> + </span><span class="token builtin">gen</span><span class="token default">(</span><span class="token string">"grade"</span><span class="token default">)) <span id="target-7"></span></span></div>
+<div></div>
+<div><span class="token default">    schema = r'\{"summary": "[\w\d\s]+\.", "grade": "[ABCD][+-]?"\}'</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">user</span><span class="token default">(</span><span class="token string">"Return in the JSON format."</span><span class="token default">)</span></div>
+<div><span class="token default">    s += </span><span class="token builtin">assistant</span><span class="token default">(</span><span class="token builtin">gen</span><span class="token default">(</span><span class="token string">"output"</span><span class="token default">, regex=schema)) <span id="target-8"></span></span></div>
+<div></div>
+<div><span class="token default">state = multi_dimensional_judge.</span><span class="token builtin">run</span><span class="token default">(...) <span id="target-9"></span></span></div>
+<div><span class="token builtin">print</span><span class="token default">(state[</span><span class="token string">"output"</span><span class="token default">])</span></div>
+</code></pre>
+            <!-- 完美的黄色箭头矢量图层 -->
+            <svg id="arrow-svg" class="absolute inset-0 pointer-events-none w-full h-full z-10">
+                <defs>
+                    <!-- refX设为8.5，points改为 0 0, 10 3.5, 0 7 以确保箭头精准向左(←)指向代码 -->
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8.5" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#f5a623" />
+                    </marker>
+                </defs>
+            </svg>
+            <!-- 右侧注释文本层：全部统一对齐到左侧 80% 处 -->
+            <div id="annotation-layer" class="absolute inset-0 pointer-events-none z-20">
+
+                <!-- 1. Handle chat template... -->
+                <div id="note-1" class="annotation-text">
+                    <div>Handle chat template</div>
+                    <div>and multi-modal inputs</div>
+                </div>
+                <!-- 2. Select an option... -->
+                <div id="note-2" class="annotation-text">
+                    <div>Select an option with</div>
+                    <div>the highest probability</div>
+                </div>
+                <!-- 3. Fetch result... -->
+                <div id="note-3" class="annotation-text">
+                    <div>Fetch result; Use Python</div>
+                    <div>control flow</div>
+                </div>
+                <!-- 4. Runtime optimization: KV Cache Reuse -->
+                <div id="note-4" class="annotation-text">
+                    <div>Runtime optimization:</div>
+                    <div>KV Cache Reuse <span class="sec-link">(Sec. 3)</span></div>
+                </div>
+                <!-- 5. Multiple generation... -->
+                <div id="note-5" class="annotation-text">
+                    <div>Multiple generation</div>
+                    <div>calls run in parallel</div>
+                </div>
+                <!-- 6. Fetch generation results -->
+                <div id="note-6" class="annotation-text">
+                    <div>Fetch generation results</div>
+                </div>
+                <!-- 7. Runtime optimization: API... -->
+                <div id="note-7" class="annotation-text">
+                    <div>Runtime optimization: API</div>
+                    <div>speculative execution <span class="sec-link">(Sec. 5)</span></div>
+                </div>
+                <!-- 8. Runtime optimization: fast... -->
+                <div id="note-8" class="annotation-text">
+                    <div>Runtime optimization: fast</div>
+                    <div>constrained decoding <span class="sec-link">(Sec. 4)</span></div>
+                </div>
+                <!-- 9. Run an SGLang program -->
+                <div id="note-9" class="annotation-text">
+                    <div>Run an SGLang program</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 定义关联关系：哪个注释(note)指向哪个代码里的目标元素(target)
+        // 您如果想调整各个文本的垂直微调偏移量，可以直接在下面修改 offset 像素值
+        const links = [
+            { noteId: "note-1", targetId: "target-1", offset: 12 },
+            { noteId: "note-2", targetId: "target-2", offset: -8 },
+            { noteId: "note-3", targetId: "target-3", offset: 8 },
+            { noteId: "note-4", targetId: "target-4", offset: 0 },
+            { noteId: "note-5", targetId: "target-5", offset: 0 },
+            { noteId: "note-6", targetId: "target-6", offset: 0 },
+            { noteId: "note-7", targetId: "target-7", offset: -5 },
+            { noteId: "note-8", targetId: "target-8", offset: 0 },
+            { noteId: "note-9", targetId: "target-9", offset: 0 }
+        ];
+        function drawArrows() {
+            const container = document.getElementById('code-container');
+            const svg = document.getElementById('arrow-svg');
+            if (!container || !svg) return;
+            // 清除旧的箭头线条，防止重叠
+            const oldLines = svg.querySelectorAll('.arrow-line');
+            oldLines.forEach(line => line.remove());
+            const containerRect = container.getBoundingClientRect();
+            links.forEach(link => {
+                const target = document.getElementById(link.targetId);
+                const note = document.getElementById(link.noteId);
+                if (!target || !note) return;
+                const targetRect = target.getBoundingClientRect();
+
+                // 计算箭头的终点坐标（即代码行的末尾位置）
+                const endX = targetRect.left - containerRect.left;
+                const endY = (targetRect.top + targetRect.height / 2) - containerRect.top;
+                // 统一将注释文本放置在对应的 Y 轴高度（并应用微调 offset）
+                const targetY = endY + link.offset;
+                note.style.top = `${targetY}px`;
+                // 计算箭头的起点坐标（即注释文本的左边缘）
+                const noteRect = note.getBoundingClientRect();
+                const startX = noteRect.left - containerRect.left - 10; // 留出 10px 间距
+                const startY = targetY;
+                // 创建 SVG 线条，从右(startX)画到左(endX)
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('class', 'arrow-line');
+                line.setAttribute('x1', `${startX}`);
+                line.setAttribute('y1', `${startY}`);
+                line.setAttribute('x2', `${endX + 10}`); // 加上10px偏移行末，防止箭头重叠压住代码字
+                line.setAttribute('y2', `${endY}`);
+                line.setAttribute('stroke', '#f5a623'); // 原图黄色
+                line.setAttribute('stroke-width', '1.8');
+                line.setAttribute('marker-end', 'url(#arrowhead)');
+
+                svg.appendChild(line);
+            });
+        }
+        // 页面加载和大小改变时，自动重新计算和绘制箭头
+        window.addEventListener('load', drawArrows);
+        window.addEventListener('resize', drawArrows);
+    </script>
+</body>
+</html>
